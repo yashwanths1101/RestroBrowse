@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
-import { RESTRO_IMAGE_URL, starIcon } from '../utils/constants.jsx'
+import { RESTRO_IMAGE_URL, starIcon } from '../../utils/constants.jsx'
 import MenuAccordian from './MenuAccordian.jsx'
-import default_restaurant_logo from '../assets/default_restaurant_logo.jpg'
-import MenuShimmerUI from './Shimmer/MenuShimmerUI.jsx'
-import useRestaurantMenu from '../utils/useRestaurantMenu.jsx'
+import default_restaurant_logo from '../../assets/default_restaurant_logo.jpg'
+import MenuShimmerUI from '../Shimmer/MenuShimmerUI.jsx'
+import useRestaurantMenu from '../../utils/useRestaurantMenu.jsx'
 
 const RestaurantMenu = () => {
   const [menu, setMenu] = useState()
   const { state } = useLocation() // THis does not work when the URL is opened separately
-
+  console.log('state : ' + '\n')
+  console.log(state)
   const {
     name,
     avgRating,
@@ -39,7 +40,7 @@ const RestaurantMenu = () => {
         </div>
 
         <div className='restaurant-menu-details'>
-          <h2>{name}</h2>
+          <h2 className='font-extrabold text-xl'>{name}</h2>
           <div className='restaurant-menu-info'>
             {avgRating && (
               <div className='restaurant-menu-rating'>

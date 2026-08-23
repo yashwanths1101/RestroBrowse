@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react'
-import { starIcon } from '../utils/constants'
-import { RESTRO_IMAGE_URL } from '../utils/constants'
-import default_restaurant_logo from '../assets/default_restaurant_logo.jpg'
+import { starIcon } from '../../utils/constants'
+import { RESTRO_IMAGE_URL } from '../../utils/constants'
+import default_restaurant_logo from '../../assets/default_restaurant_logo.jpg'
 
-const MenuItem = ({ category, openCategory }) => {
-  if (openCategory !== category?.categoryId) return
-
+const MenuItem = ({ category }) => {
   return (
     <div className='menu-items-container'>
       {category?.itemCards.map(item => {
@@ -21,7 +19,7 @@ const MenuItem = ({ category, openCategory }) => {
                 </div>
 
                 {info?.ratings?.aggregatedRating?.rating && (
-                  <div className='menu-rating'>
+                  <div className='menu-rating flex items-center'>
                     <div className='star-container'>{starIcon}</div>
                     <div>
                       {info?.ratings?.aggregatedRating?.rating +

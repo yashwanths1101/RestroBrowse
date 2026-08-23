@@ -30,7 +30,7 @@ const BodyComponent = () => {
 
   return (
     <div className='body'>
-      <div className='filter-container'>
+      <div className='filter-container h-15'>
         <div className='search-container'>
           <input
             className='search-box'
@@ -57,9 +57,12 @@ const BodyComponent = () => {
             {searchIcon}
           </button>
         </div>
-        <div className='top-rated'>
-          <button onClick={handleClick}>Top Rated Restaurant</button>
-        </div>
+        <button
+          className='border rounded-xl px-2 py-1 hover:cursor-pointer hover:bg-green-100 active:bg-green-200'
+          onClick={handleClick}
+        >
+          Top Rated
+        </button>
       </div>
       <div className='res-container'>
         {filteredList.map(Restaurant => (

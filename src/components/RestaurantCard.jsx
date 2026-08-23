@@ -21,7 +21,7 @@ const RestaurantCard = props => {
         ></img>
       </div>
       <div className='restro-info'>
-        <h4>{name}</h4>
+        <h4 className='font-bold'>{name}</h4>
         <p className='cuisines'>{cuisines.join(', ')}</p>
         {avgRating && (
           <div className='rating'>
@@ -30,7 +30,7 @@ const RestaurantCard = props => {
           </div>
         )}
 
-        <p>{costForTwo}</p>
+        <p className='font-medium'>{costForTwo}</p>
         <p>{time}</p>
       </div>
     </div>

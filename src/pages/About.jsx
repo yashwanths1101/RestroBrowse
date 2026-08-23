@@ -2,7 +2,7 @@ const About = () => {
   return (
     <div className='page-container'>
       <div>
-        <h1>About Restaurant Explorer</h1>
+        <h1 className='font-extrabold text-2xl'>About Restaurant Explorer</h1>
       </div>
 
       <div>
@@ -14,9 +14,9 @@ const About = () => {
       </div>
 
       <div>
-        <h2>Features</h2>
+        <h2 className='font-semibold text-lg'>Features</h2>
 
-        <ul>
+        <ul className='list-disc'>
           <li>Restaurant browsing interface</li>
           <li>Search restaurants by name</li>
           <li>Rating-based filtering</li>
@@ -27,9 +27,9 @@ const About = () => {
       </div>
 
       <div>
-        <h2>Technologies</h2>
+        <h2 className='font-semibold text-lg'>Technologies</h2>
 
-        <ul>
+        <ul className='list-disc'>
           <li>React</li>
           <li>React Router</li>
           <li>JavaScript</li>

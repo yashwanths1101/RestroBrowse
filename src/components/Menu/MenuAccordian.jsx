@@ -13,11 +13,14 @@ const MenuAccordian = ({ menu }) => {
   })
   console.log(categories)
   return (
-    <div className='accordian-container'>
+    <div className='accordian-container '>
       {categories.map(categoryData => {
         const category = categoryData?.card?.card
         return (
-          <div className='category-container' key={category?.categoryId}>
+          <div
+            className='category-container bg-[rgb(243,242,242)] p-2 rounded-lg'
+            key={category?.categoryId}
+          >
             <button
               className='category-title-btn'
               onClick={() => {
@@ -28,8 +31,10 @@ const MenuAccordian = ({ menu }) => {
                 )
               }}
             >
-              <span>{category?.title}</span>
-
+              <span>
+                {category?.title + ' (' + category?.itemCards?.length + ')'}
+              </span>
+              <span></span>
               {openCategory === category.categoryId ? (
                 <svg
                   width='2rem'
@@ -64,7 +69,10 @@ const MenuAccordian = ({ menu }) => {
                 </svg>
               )}
             </button>
-            <MenuItem category={category} openCategory={openCategory} />
+
+            {openCategory === category?.categoryId && (
+              <MenuItem category={category} openCategory={openCategory} />
+            )}
           </div>
         )
       })}

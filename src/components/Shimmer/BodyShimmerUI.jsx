@@ -1,6 +1,6 @@
 const BodyShimmerUI = () => {
   return (
-    <div className='shimmer'>
+    <div className='flex flex-col gap-8'>
       <div className='shimmerHeading-container'>
         <div className='shimmerHeading1'></div>
         <div className='shimmerHeading2'></div>

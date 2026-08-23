@@ -1,7 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-}
+@import "tailwindcss";
 
 html {
   min-height: 100%;
@@ -275,6 +272,10 @@ html {
   border-radius: 1rem;
 }
 
+.space {
+  width: 100%;
+  height: 1rem;
+}
 .restaurant-menu-details {
   margin-top: 0.4rem;
   font-size: 0.94rem;
@@ -438,11 +439,9 @@ html {
 }
 
 .menu-image-container {
-  height: 9rem;
-  width: 9rem;
-  border-radius: 10px;
-  overflow: hidden;
+  width: 20%;
   img {
+    border-radius: 10px;
     width: 100%;
     height: 100%;
     object-fit: cover;
