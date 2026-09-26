@@ -1,80 +1,111 @@
 import RestaurantCard from './RestaurantCard'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import BodyShimmerUI from './Shimmer/BodyShimmerUI'
-import {
-  RESTRO_IMAGE_URL,
-  RESTAURANT_API,
-  searchIcon
-} from '../utils/constants'
+import { Search, X, Star } from 'lucide-react'
 import useFetchRestaurantData from '../utils/useFetchRestaurantData'
 
 const BodyComponent = () => {
   const [resList, setResList] = useState([])
   const [filteredList, setFilteredList] = useState([])
   const [searchQuery, setSearchQuery] = useState('')
+  const [minRating, setMinRating] = useState(null)
 
   useFetchRestaurantData(setResList, setFilteredList)
 
-  const handleClick = () => {
+  useEffect(() => {
+    const query = searchQuery.trim().toLowerCase()
     setFilteredList(
-      resList.filter(restaurant => {
-        return restaurant?.info?.avgRating >= 4.0
+      resList.filter(({ info }) => {
+        const matchesName = info?.name?.toLowerCase().includes(query)
+        const matchesRating =
+          minRating === null || Number(info?.avgRating) >= minRating
+        return matchesName && matchesRating
       })
     )
-  }
-
-  if (resList.length === 0) {
-    return <BodyShimmerUI />
-  }
+  }, [resList, searchQuery, minRating, setFilteredList])
 
   return (
     <div className='body'>
-      <div className='filter-container h-15'>
-        <div className='search-container'>
+      <div className='filter-container'>
+        <label className='search-container'>
+          <Search className='search-icon' aria-hidden='true' />
           <input
             className='search-box'
             name='search'
             type='text'
-            placeholder='Search here...'
+            placeholder='Search restaurants'
+            aria-label='Search restaurants'
             value={searchQuery}
-            onChange={e => {
-              setSearchQuery(e.target.value)
-            }}
+            onChange={event => setSearchQuery(event.target.value)}
           />
-          <button
-            className='search-btn'
-            onClick={() => {
-              setFilteredList(
-                resList.filter(restaurant =>
-                  restaurant?.info?.name
-                    .toLowerCase()
-                    .includes(searchQuery.toLowerCase())
-                )
+          {searchQuery && (
+            <button
+              className='search-clear'
+              type='button'
+              aria-label='Clear search'
+              onClick={() => setSearchQuery('')}
+            >
+              <X aria-hidden='true' />
+            </button>
+          )}
+        </label>
+
+        <div className='rating-filter'>
+          <select
+            className='rating-select'
+            aria-label='Minimum restaurant rating'
+            value={minRating === null ? 'any' : String(minRating)}
+            onChange={event =>
+              setMinRating(
+                event.target.value === 'any' ? null : Number(event.target.value)
               )
+            }
+          >
+            <option value='any'>Top rated</option>
+            <option value='3.5'>3.5+ stars</option>
+            <option value='4'>4.0+ stars</option>
+            <option value='4.5'>4.5+ stars</option>
+          </select>
+          {minRating !== null && (
+            <button
+              className='rating-clear'
+              type='button'
+              aria-label='Clear rating filter'
+              title='Clear rating filter'
+              onClick={() => setMinRating(null)}
+            >
+              <X aria-hidden='true' />
+            </button>
+          )}
+        </div>
+      </div>
+
+      {filteredList.length > 0 ? (
+        <div className='res-container'>
+          {filteredList.map(restaurant => (
+            <Link
+              to={'restaurant/' + restaurant?.info?.id}
+              state={restaurant?.info}
+              key={restaurant?.info?.id}
+            >
+              <RestaurantCard data={restaurant} />
+            </Link>
+          ))}
+        </div>
+      ) : resList.length > 0 ? (
+        <p className='empty-results'>
+          No restaurants found.{' '}
+          <button
+            type='button'
+            onClick={() => {
+              setSearchQuery('')
+              setMinRating(null)
             }}
           >
-            {searchIcon}
+            Clear filters
           </button>
-        </div>
-        <button
-          className='border rounded-xl px-2 py-1 hover:cursor-pointer hover:bg-green-100 active:bg-green-200'
-          onClick={handleClick}
-        >
-          Top Rated
-        </button>
-      </div>
-      <div className='res-container'>
-        {filteredList.map(Restaurant => (
-          <Link
-            to={'restaurant/' + Restaurant?.info?.id}
-            state={Restaurant?.info}
-            key={Restaurant?.info?.id}
-          >
-            <RestaurantCard data={Restaurant} />
-          </Link>
-        ))}
-      </div>
+        </p>
+      ) : null}
     </div>
   )
 }

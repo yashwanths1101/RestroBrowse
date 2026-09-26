@@ -14,48 +14,6 @@
       {
         "card": {
           "card": {
-            "@type": "type.googleapis.com/swiggy.seo.widgets.v1.BasicContent",
-            "title": "Restaurants with online food delivery in Vijayawada",
-            "id": "popular_restaurants_title"
-          }
-        }
-      },
-      {
-        "card": {
-          "card": {
-            "@type": "type.googleapis.com/swiggy.gandalf.widgets.v2.InlineViewFilterSortWidget",
-            "sortConfigs": [
-              {
-                "key": "relevance",
-                "title": "Relevance (Default)",
-                "selected": true,
-                "defaultSelection": true
-              },
-              {
-                "key": "deliveryTimeAsc",
-                "title": "Delivery Time"
-              },
-              {
-                "key": "modelBasedRatingDesc",
-                "title": "Rating"
-              },
-              {
-                "key": "costForTwoAsc",
-                "title": "Cost: Low to High"
-              },
-              {
-                "key": "costForTwoDesc",
-                "title": "Cost: High to Low"
-              }
-            ],
-            "restaurantCount": 128,
-            "widgetId": "inlineFacetFilter"
-          }
-        }
-      },
-      {
-        "card": {
-          "card": {
             "@type": "type.googleapis.com/swiggy.gandalf.widgets.v2.GridWidget",
             "layout": {
               "columns": 4

@@ -43,7 +43,6 @@ const HeaderComponent = () => {
               Contact
             </NavLink>
           </li>
-          <li>Cart</li>
         </ul>
       </div>
     </div>

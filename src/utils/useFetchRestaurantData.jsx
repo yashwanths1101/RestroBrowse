@@ -1,22 +1,35 @@
 import { useEffect } from 'react'
 
 const useFetchRestaurantData = (setResList, setFilteredList) => {
-  useEffect(() => {
-    fetchData()
-  }, [])
+  const fetchData = async (page, restaurantList) => {}
 
-  const fetchData = async () => {
-    const response = await new Promise(resolve =>
-      setTimeout(resolve, 1200, fetch('/restaurants/page-1.json'))
-    )
-    const json = await response.json()
-    const restaurantList =
-      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-    setResList(restaurantList)
-    setFilteredList(restaurantList)
+  const getRestaurantList = async () => {
+    const restaurantList = []
 
-    console.log(json)
+    for (let page = 1; page < 10; page++) {
+      const response = await fetch(`/restaurants/page-${page}.json`)
+      const json = await response.json()
+
+      const curResList =
+        json?.data?.cards[0]?.card?.card?.gridElements?.infoWithStyle
+          ?.restaurants ?? []
+
+      restaurantList.push(...curResList)
+    }
+
+    return restaurantList
   }
+
+  useEffect(() => {
+    const loadRestaurants = async () => {
+      const restaurantList = await getRestaurantList()
+
+      setResList(restaurantList)
+      setFilteredList(restaurantList)
+    }
+
+    loadRestaurants()
+  }, [])
 }
 
 export default useFetchRestaurantData
