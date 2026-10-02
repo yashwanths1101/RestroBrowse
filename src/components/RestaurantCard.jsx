@@ -1,5 +1,5 @@
 import { RESTRO_IMAGE_URL, starIcon } from '../utils/constants.jsx'
-import default_restaurant_logo from '../assets/Default_Restaurant_LOGO.jpg'
+import default_restaurant_logo from '../assets/Default_Restaurant_LOGO.JPG'
 
 const RestaurantCard = props => {
   const {
