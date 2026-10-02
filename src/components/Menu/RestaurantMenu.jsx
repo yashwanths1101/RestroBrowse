@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import { RESTRO_IMAGE_URL, starIcon } from '../../utils/constants.jsx'
 import MenuAccordian from './MenuAccordian.jsx'
-import default_restaurant_logo from '../../assets/default_restaurant_logo.jpg'
+import default_restaurant_logo from '../../assets/defaultRestaurantLogo.jpg'
 import MenuShimmerUI from '../Shimmer/MenuShimmerUI.jsx'
 import useRestaurantMenu from '../../utils/useRestaurantMenu.jsx'
 

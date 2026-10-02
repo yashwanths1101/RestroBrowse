@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { starIcon } from '../../utils/constants'
 import { RESTRO_IMAGE_URL } from '../../utils/constants'
-import default_restaurant_logo from '../../assets/default_restaurant_logo.jpg'
+import default_restaurant_logo from '../../assets/defaultRestaurantLogo.jpg'
 
 const MenuItem = ({ category }) => {
   return (
