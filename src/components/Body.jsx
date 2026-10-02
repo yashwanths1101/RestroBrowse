@@ -74,7 +74,7 @@ const BodyComponent = () => {
               title='Clear rating filter'
               onClick={() => setMinRating(null)}
             >
-              <X aria-hidden='true' />
+              <X />
             </button>
           )}
         </div>

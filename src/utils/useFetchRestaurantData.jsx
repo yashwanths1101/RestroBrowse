@@ -1,8 +1,6 @@
 import { useEffect } from 'react'
 
 const useFetchRestaurantData = (setResList, setFilteredList) => {
-  const fetchData = async (page, restaurantList) => {}
-
   const getRestaurantList = async () => {
     const restaurantList = []
 
