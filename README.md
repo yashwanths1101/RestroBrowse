@@ -2,11 +2,9 @@
 
 A **restaurant discovery platform** built with React that lets users browse restaurants, search by name, filter by rating, and explore restaurant menus.
 
-## Screenshots
-
 ## Features
 
-- **Restaurant Listing:** Browse restaurants using locally stored data.
+- **Restaurant Listing:** Explore restaurants and view their ratings, cuisines, prices, and delivery times.
 - **Search:** Find restaurants by name.
 - **Rating Filter:** Filter restaurants based on ratings.
 - **Restaurant Details:** Explore individual restaurant pages and menus.
@@ -21,6 +19,12 @@ A **restaurant discovery platform** built with React that lets users browse rest
 - **Styling:** Tailwind CSS
 - **Routing:** React Router
 - **Build Tool:** Vite
+
+## Screenshots
+
+![Home Page](./screenshots/homePage.png)
+
+![Menu Item](./screenshots/menuItemPage.png)
 
 ## Getting Started
 
