@@ -34,7 +34,7 @@ const MenuItem = ({ category }) => {
                   <p className='menu-desc'>{info?.description}</p>
                 )}
               </div>
-              <div className='menu-image-container'>
+              <div className='menu-image-container min-h-22'>
                 <img
                   src={
                     info?.imageId
