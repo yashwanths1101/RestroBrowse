@@ -1,13 +1,3 @@
-import SouthIndianMenu from '../utils/menu/SouthIndianMenu.json'
-import NorthIndianMenu from '../utils/menu/NorthIndianMenu.json'
-import BiryaniMenu from '../utils/menu/BiryaniMenu.json'
-import ChineseMenu from '../utils/menu/ChineseMenu.json'
-import SnacksMenu from '../utils/menu/SnacksMenu.json'
-import BurgersMenu from '../utils/menu/BurgersMenu.json'
-import PizzaMenu from '../utils/menu/PizzaMenu.json'
-import DesertsMenu from '../utils/menu/DesertsMenu.json'
-import BeveragesMenu from '../utils/menu/BeveragesMenu.json'
-import HealthyMenu from '../utils/menu/HealthyMenu.json'
 import { useEffect } from 'react'
 
 const cuisineCategoryMap = {
@@ -60,28 +50,32 @@ const cuisineCategoryMap = {
 }
 
 const categoryMenuMap = {
-  SouthIndian: SouthIndianMenu,
-  NorthIndian: NorthIndianMenu,
-  Biryani: BiryaniMenu,
-  Chinese: ChineseMenu,
-  Snacks: SnacksMenu,
-  Burgers: BurgersMenu,
-  Pizza: PizzaMenu,
-  Deserts: DesertsMenu,
-  Beverages: BeveragesMenu,
-  Healthy: HealthyMenu
+  SouthIndian: () => import('../utils/menu/SouthIndianMenu.json'),
+  NorthIndian: () => import('../utils/menu/NorthIndianMenu.json'),
+  Biryani: () => import('../utils/menu/BiryaniMenu.json'),
+  Chinese: () => import('../utils/menu/ChineseMenu.json'),
+  Snacks: () => import('../utils/menu/SnacksMenu.json'),
+  Burgers: () => import('../utils/menu/BurgersMenu.json'),
+  Pizza: () => import('../utils/menu/PizzaMenu.json'),
+  Deserts: () => import('../utils/menu/DesertsMenu.json'),
+  Beverages: () => import('../utils/menu/BeveragesMenu.json'),
+  Healthy: () => import('../utils/menu/HealthyMenu.json')
 }
 
-const getMenu = cuisines => {
+const getMenu = async cuisines => {
   for (const cuisine of cuisines) {
     const category = cuisineCategoryMap[cuisine]
 
     if (category) {
-      return categoryMenuMap[category]
+      const loadMenu = categoryMenuMap[category]
+      const module = await loadMenu()
+
+      return module.default
     }
   }
 
-  return BiryaniMenu
+  const module = await categoryMenuMap.Biryani()
+  return module.default
 }
 
 const useRestaurantMenu = (menu, setMenu, cuisines) => {
