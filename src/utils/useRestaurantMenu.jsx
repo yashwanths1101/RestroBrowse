@@ -84,9 +84,7 @@ const useRestaurantMenu = (menu, setMenu, cuisines) => {
   }, [])
 
   const fetchMenu = async () => {
-    const response = await new Promise(resolve => {
-      setTimeout(resolve, 1200, getMenu(cuisines))
-    })
+    const response = await getMenu(cuisines)
     setMenu(response)
   }
 }
